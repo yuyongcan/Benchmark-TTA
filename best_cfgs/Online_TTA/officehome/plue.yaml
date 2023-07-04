@@ -1,0 +1,24 @@
+CORRUPTION:
+  DATASET: officehome
+  SOURCE_DOMAIN: Art
+  SOURCE_DOMAINS:
+    - Art
+    - Clipart
+    - Product
+    - RealWorld
+  SEVERITY:
+    - 5
+  TYPE:
+    - Clipart
+    - Product
+    - RealWorld
+MODEL:
+  ADAPTATION: plue
+  ARCH: officehome_shot
+OPTIM:
+  LR: 0.001
+TEST:
+  BATCH_SIZE: 64
+  EPOCH: 24
+PLUE:
+  NUM_NEIGHBORS: 15

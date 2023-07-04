@@ -1,0 +1,21 @@
+MODEL:
+  ADAPTATION: norm_alpha
+  ARCH: domainnet126_shot
+TEST:
+  BATCH_SIZE: 64
+CORRUPTION:
+  DATASET: domainnet126
+  SOURCE_DOMAIN: clipart
+  SOURCE_DOMAINS:
+    - clipart
+    - painting
+    - sketch
+    - real
+  SEVERITY:
+    - 5
+  TYPE:
+    - real
+    - painting
+    - sketch
+BN:
+  ALPHA: 0.3

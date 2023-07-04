@@ -1,0 +1,13 @@
+MODEL:
+  ADAPTATION: norm_ema
+  ARCH: domainnet126_shot
+TEST:
+  BATCH_SIZE: 64
+CORRUPTION:
+  DATASET: domainnet126
+  SEVERITY:
+  - 5
+  TYPE:
+    - clipart
+    - painting
+    - sketch

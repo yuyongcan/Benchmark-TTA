@@ -1,0 +1,29 @@
+CORRUPTION:
+  DATASET: domainnet126
+  SOURCE_DOMAIN: clipart
+  SOURCE_DOMAINS:
+    - clipart
+    - painting
+    - sketch
+    - real
+  SEVERITY:
+    - 5
+  TYPE:
+    - real
+    - painting
+    - sketch
+MODEL:
+  ADAPTATION: cotta
+  ARCH: domainnet126_shot
+OPTIM:
+  METHOD: SGD
+  STEPS: 1
+  BETA: 0.9
+  LR: 0.01
+  WD: 0.0
+COTTA:
+  RST: 0.001
+  AP: 0.1
+TEST:
+  BATCH_SIZE: 64
+  EPOCH: 10

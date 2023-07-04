@@ -1,0 +1,33 @@
+CORRUPTION:
+  DATASET: domainnet126
+  SOURCE_DOMAIN: clipart
+  SOURCE_DOMAINS:
+    - clipart
+    - painting
+    - sketch
+    - real
+  SEVERITY:
+    - 5
+  TYPE:
+    - real
+    - painting
+    - sketch
+MODEL:
+  ADAPTATION: adacontrast
+  ARCH: domainnet126_shot
+OPTIM:
+  METHOD: SGD
+  LR: 0.0002
+  MOMENTUM: 0.9
+  WD: 0.0001
+  STEPS: 1
+  NESTEROV: True
+CONTRAST:
+  TEMPERATURE: 0.07
+TEST:
+  BATCH_SIZE: 64
+  EPOCH: 10
+  NUM_WORKERS: 2
+ADACONTRAST:
+  NUM_NEIGHBORS: 10
+  QUEUE_SIZE: 16384

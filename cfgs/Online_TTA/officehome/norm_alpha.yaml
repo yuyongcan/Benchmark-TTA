@@ -1,0 +1,21 @@
+MODEL:
+  ADAPTATION: norm_alpha
+  ARCH: officehome_shot
+TEST:
+  BATCH_SIZE: 1
+CORRUPTION:
+  DATASET: officehome
+  SOURCE_DOMAIN: Art
+  SOURCE_DOMAINS:
+    - Art
+    - Clipart
+    - Product
+    - RealWorld
+  SEVERITY:
+    - 5
+  TYPE:
+    - Clipart
+    - Product
+    - RealWorld
+BN:
+  ALPHA: 0.9

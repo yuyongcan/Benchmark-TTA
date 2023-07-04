@@ -1,0 +1,27 @@
+CORRUPTION:
+  DATASET: officehome
+  SOURCE_DOMAIN: Art
+  SOURCE_DOMAINS:
+    - Art
+    - Clipart
+    - Product
+    - RealWorld
+  SEVERITY:
+    - 5
+  TYPE:
+    - Clipart
+    - Product
+    - RealWorld
+MODEL:
+  ADAPTATION: sar
+  ARCH: officehome_shot
+OPTIM:
+  BETA: 0.9
+  LR: 0.00025
+  METHOD: SGD
+  STEPS: 1
+  WD: 0.0
+TEST:
+  BATCH_SIZE: 64
+SAR:
+  RESET_CONSTANT: 0.1
