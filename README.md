@@ -28,53 +28,53 @@ This repository allows to study a wide range of different datasets, models, sett
   - `officehome` [Office-Home](https://drive.google.com/file/d/0B81rNlvomiwed0V1YUxQdC1uOTg/view?usp=sharing&resourcekey=0-2SNWq0CDAuWOBRRBL7ZZsw)
   
   - The dataset directory structure is as follows:
-  - 
-        |-- datasets
+    |-- datasets
   
-            |-- cifar-10
+    ​		|-- cifar-10
   
-            |-- cifar-100
+    ​		|-- cifar-100
   
-            |-- ImageNet
+    ​		|-- ImageNet
   
-                |-- train
+    ​				|-- train
   
-                |-- val
+    ​				|-- val
   
-            |-- ImageNet-C
+    ​		|-- ImageNet-C
   
-            |-- CIFAR-10-C
+    ​		|-- CIFAR-10-C
   
-            |-- CIFAR-100-C
+    ​		|-- CIFAR-100-C
   
-            |-- DomainNet
+    ​		|-- DomainNet
   
-                |-- clipart
+    ​				|-- clipart
   
-                |-- painting
+    ​				|-- painting
   
-                |-- real
+    ​				|-- real
   
-                |-- sketch
+    ​				|-- sketch
   
-                | -- clipart126_test.txt
+    ​				| -- clipart126_test.txt
   
-                ......
+    ​				......
   
-            |-- office-home
+    ​		|-- office-home
   
-                |-- Art
+    ​				|-- Art
   
-                |-- Clipart
+    ​				|-- Clipart
   
-                |-- Product
+    ​				|-- Product
   
-                |-- Real_World
-  
+    ​				|-- Real_World
   
   
-  You can download the .txt file for DomainNet in ./dataset/DomainNet, we generate .txt file for office-home following [SHOT](https://github.com/tim-learn/SHOT)
-
+  
+  You can download the .txt file for DomainNet in ./dataset/DomainNet, generate .txt file for office-home following [SHOT](https://github.com/tim-learn/SHOT)
+  
+  ​	
   
 - **Models**
   
@@ -99,6 +99,7 @@ Next, specify the root folder for all datasets `_C.DATA_DIR = "./data"` in the f
 
 The best parameters for each method and dataset are save in ./best_cfgs
 
+download the ckpt of pretrained models and data load sequences from [here](https://drive.google.com/drive/folders/14GWvsEI5pDc3Mm7vqyELeBPuRUSPt-Ao?usp=sharing) and put it in ./ckpt
 #### How to reproduce
 
 The entry file for SHOT, NRC, PLUE to run is **SFDA-eva.sh**
