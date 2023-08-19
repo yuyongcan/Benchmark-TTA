@@ -1,7 +1,7 @@
 import os
 
 import timm
-from torchvision.models import resnet50, ResNet50_Weights
+from torchvision.models import resnet50, ResNet50_Weights, convnext_base, ConvNeXt_Base_Weights, efficientnet_b0, EfficientNet_B0_Weights
 
 from ..models import *
 
@@ -51,6 +51,10 @@ def load_model(model_name, checkpoint_dir=None, domain=None):
             model.load_state_dict(torch.load(checkpoint_path))
     elif model_name == 'vit':
         model=timm.create_model('vit_base_patch16_224', pretrained=True)
+    elif model_name == 'convnext_base':
+        model=convnext_base(weights=ConvNeXt_Base_Weights.DEFAULT)
+    elif model_name == 'efficientnet_b0':
+        model=efficientnet_b0(weights=EfficientNet_B0_Weights.DEFAULT)
     else:
         raise ValueError('Unknown model name')
 

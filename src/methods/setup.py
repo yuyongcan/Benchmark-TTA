@@ -226,8 +226,9 @@ def setup_eata(model, num_classes, cfg):
                      episodic=cfg.MODEL.EPISODIC,
                      fishers=fishers,
                      fisher_alpha=cfg.EATA.FISHER_ALPHA,
-                     e_margin=math.log(num_classes) * 0.40,
-                     d_margin=cfg.EATA.D_MARGIN)
+                     e_margin=math.log(num_classes) * (0.40 if cfg.EATA.E_MARGIN_COE is None else cfg.EATA.E_MARGIN_COE),
+                     d_margin=cfg.EATA.D_MARGIN
+                     )
 
     return eta_model, param_names
 
@@ -293,6 +294,7 @@ def setup_adacontrast(model, cfg):
 
 def setup_sar(model, cfg, num_classes):
     sar_model = SAR(model, lr=cfg.OPTIM.LR, batch_size=cfg.TEST.BATCH_SIZE, steps=cfg.OPTIM.STEPS,
-                    num_classes=num_classes, episodic=cfg.MODEL.EPISODIC, reset_constant=cfg.SAR.RESET_CONSTANT)
+                    num_classes=num_classes, episodic=cfg.MODEL.EPISODIC, reset_constant=cfg.SAR.RESET_CONSTANT,
+                    e_margin=math.log(num_classes) * (0.40 if cfg.SAR.E_MARGIN_COE is None else cfg.SAR.E_MARGIN_COE))
 
     return sar_model

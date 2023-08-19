@@ -197,6 +197,7 @@ _C.LAME.FORCE_SYMMETRY = False
 # --------------------------------- SAR options ----------------------------- #
 _C.SAR = CfgNode()
 _C.SAR.RESET_CONSTANT = 0.2
+_C.SAR.E_MARGIN_COE = 0.4
 
 # --------------------------------- EATA options ---------------------------- #
 _C.EATA = CfgNode()
@@ -209,6 +210,8 @@ _C.EATA.NUM_SAMPLES = 2000
 
 # Diversity margin
 _C.EATA.D_MARGIN = 0.05
+
+_C.EATA.E_MARGIN_COE = 0.4
 
 # ------------------------------- Source options ---------------------------- #
 _C.SOURCE = CfgNode()
@@ -231,7 +234,7 @@ _C.TEST.BATCH_SIZE = 64
 # If the batch size is 1, a sliding window approach can be applied by setting window length > 1
 _C.TEST.WINDOW_LENGTH = 1
 
-_C.TEST.EPOCH = 100
+_C.TEST.EPOCH = 1
 
 # Number of augmentations for methods relying on TTA (test time augmentation)
 _C.TEST.N_AUGMENTATIONS = 32

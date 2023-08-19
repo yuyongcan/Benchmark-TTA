@@ -254,6 +254,7 @@ def get_args():
     parser.add_argument('--M_TEACHER_MOMENTUM', default=None, type=float)
     parser.add_argument('--EATA_DM', default=None, type=float)
     parser.add_argument('--EATA_FISHER_ALPHA', default=None, type=float)
+    parser.add_argument('--EATA_E_MARGIN_COE', default=None, type=float)
     parser.add_argument('--T3A_FILTER_K', default=None, type=int)
     parser.add_argument('--LAME_AFFINITY', default=None, type=str)
     parser.add_argument('--LAME_KNN', default=None, type=int)
@@ -264,9 +265,11 @@ def get_args():
     parser.add_argument('--NRC_K', default=None, type=int)
     parser.add_argument('--NRC_KK', default=None, type=int)
     parser.add_argument('--SAR_RESET_CONSTANT', default=None, type=float)
+    parser.add_argument('--SAR_E_MARGIN_COE', default=None, type=float)
     parser.add_argument('--PLUE_NUM_NEIGHBORS', default=None, type=int)
     parser.add_argument('--ADACONTRAST_NUM_NEIGHBORS', default=None, type=int)
     parser.add_argument('--ADACONTRAST_QUEUE_SIZE', default=None, type=int)
+    parser.add_argument('--TEST_BATCH_SIZE', default=None, type=int)
     args = parser.parse_args()
     return args
 
@@ -288,6 +291,8 @@ def merge_cfg_from_args(cfg, args):
         cfg.EATA.D_MARGIN = args.EATA_DM
     if args.EATA_FISHER_ALPHA is not None:
         cfg.EATA.FISHER_ALPHA = args.EATA_FISHER_ALPHA
+    if args.EATA_E_MARGIN_COE is not None:
+        cfg.EATA.E_MARGIN_COE = args.EATA_E_MARGIN_COE
     if args.T3A_FILTER_K is not None:
         cfg.T3A.FILTER_K = args.T3A_FILTER_K
     if args.LAME_AFFINITY is not None:
@@ -306,10 +311,14 @@ def merge_cfg_from_args(cfg, args):
         cfg.NRC.KK = args.NRC_KK
     if args.SAR_RESET_CONSTANT is not None:
         cfg.SAR.RESET_CONSTANT = args.SAR_RESET_CONSTANT
+    if args.SAR_E_MARGIN_COE is not None:
+        cfg.SAR.E_MARGIN_COE = args.SAR_E_MARGIN_COE
     if args.PLUE_NUM_NEIGHBORS is not None:
         cfg.PLUE.NUM_NEIGHBORS = args.PLUE_NUM_NEIGHBORS
     if args.ADACONTRAST_NUM_NEIGHBORS is not None:
         cfg.ADACONTRAST.NUM_NEIGHBORS = args.ADACONTRAST_NUM_NEIGHBORS
     if args.ADACONTRAST_QUEUE_SIZE is not None:
         cfg.ADACONTRAST.QUEUE_SIZE = args.ADACONTRAST_QUEUE_SIZE
+    if args.TEST_BATCH_SIZE is not None:
+        cfg.TEST.BATCH_SIZE = args.TEST_BATCH_SIZE
 

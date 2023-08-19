@@ -25,14 +25,14 @@ class SAR(nn.Module):
     """SAR online adapts a model by Sharpness-Aware and Reliable entropy minimization during testing.
     Once SARed, a model adapts itself by updating on every forward.
     """
-    def __init__(self, model, lr, batch_size, num_classes, episodic=False, reset_constant=0.2, steps=1):
+    def __init__(self, model, lr, batch_size, num_classes, episodic=False, reset_constant=0.2, steps=1, e_margin=0.4*math.log(10000)):
         super().__init__()
         self.model, self.optimizer = self.prepare_SAR_model_and_optimizer(model,lr ,batch_size)
         self.steps = steps
         # assert steps > 0, "SAR requires >= 1 step(s) to forward and update"
         self.episodic = episodic
 
-        self.margin_e0 = math.log(num_classes)*0.40  # margin E_0 for reliable entropy minimization, Eqn. (2)
+        self.margin_e0 = e_margin  # margin E_0 for reliable entropy minimization, Eqn. (2)
         self.reset_constant_em = reset_constant  # threshold e_m for model recovery scheme
         self.ema = None  # to record the moving average of model output entropy, as model recovery criteria
 

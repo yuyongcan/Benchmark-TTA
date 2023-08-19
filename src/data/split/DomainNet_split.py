@@ -2,7 +2,7 @@ import os
 from os.path import join as pjoin
 from random import shuffle, seed
 seed(2020)
-DomainNet_path='./datasets/DomainNet'
+DomainNet_path='/data2/yongcan.yu/datasets/DomainNet'
 Domains=['clipart','painting','real','sketch']
 for domain in Domains:
     all_path=pjoin(DomainNet_path,f'labeled_source_images_{domain}.txt')

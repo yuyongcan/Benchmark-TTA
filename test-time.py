@@ -81,7 +81,10 @@ def evaluate(cfg):
             for epoch in range(cfg.TEST.EPOCH):
                 acc = get_accuracy(
                     model, data_loader=test_loader)
-                print(f"epoch: {epoch}, acc: {acc:.2%}")
+                if cfg.TEST.EPOCH > 1:
+                    print(f"epoch: {epoch}, acc: {acc:.2%}")
+                    # logger.info(f"epoch: {epoch}, acc: {acc:.2%}")
+
 
             accs.append(acc)
 

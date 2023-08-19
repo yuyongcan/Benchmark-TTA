@@ -1,6 +1,7 @@
 # Benchmarking Test-Time Adaptation against Distribution Shifts in Image Classification
 
 ## Prerequisites
+
 To use the repository, we provide a conda environment.
 ```bash
 conda update conda
@@ -8,10 +9,20 @@ conda env create -f environment.yaml
 conda activate Benchmark_TTA 
 ```
 
-## Classification
+## Structure of Project
 
-<details open>
-<summary>Features</summary>
+This project contains several directories. Their roles are listed as follows:
+
++ ./best_cfgs: the best config files for each dataset and algorithm are saved here.
++ ./robustbench: a official library we used to load robust datasets and models. 
++ ./src/
+  + data: we load our datasets and dataloaders by code under this directories.
+  + methods: the code for implements of various TTA methods.
+  + models: the various models' loading process and definition rely on the code here.
+  + utils: some useful tools for our projects. 
+
+## Run
+
 
 This repository allows to study a wide range of different datasets, models, settings, and methods. A quick overview is given below:
 
@@ -28,54 +39,58 @@ This repository allows to study a wide range of different datasets, models, sett
   - `officehome` [Office-Home](https://drive.google.com/file/d/0B81rNlvomiwed0V1YUxQdC1uOTg/view?usp=sharing&resourcekey=0-2SNWq0CDAuWOBRRBL7ZZsw)
   
   - The dataset directory structure is as follows:
-    |-- datasets
+
+
+
+  	|-- datasets 
+  	
+  	        |-- cifar-10
+  	
+  	        |-- cifar-100
+  	
+  	        |-- ImageNet
+  	
+  	                |-- train
+  	
+  	                |-- val
+  	
+  	        |-- ImageNet-C
+  	
+  	        |-- CIFAR-10-C
+  	
+  	        |-- CIFAR-100-C
+  	
+  	        |-- DomainNet
+  	
+  	                |-- clipart
+  	
+  	                |-- painting
+  	
+  	                |-- real
+  	
+  	                |-- sketch
+  	
+  	                | -- clipart126_test.txt
+  	
+  	                ......
+  	
+  	        |-- office-home
+  	
+  	                |-- Art
+  	
+  	                |-- Clipart
+  	
+  	                |-- Product
+  	
+  	                |-- Real_World
+
   
-    ​		|-- cifar-10
-  
-    ​		|-- cifar-100
-  
-    ​		|-- ImageNet
-  
-    ​				|-- train
-  
-    ​				|-- val
-  
-    ​		|-- ImageNet-C
-  
-    ​		|-- CIFAR-10-C
-  
-    ​		|-- CIFAR-100-C
-  
-    ​		|-- DomainNet
-  
-    ​				|-- clipart
-  
-    ​				|-- painting
-  
-    ​				|-- real
-  
-    ​				|-- sketch
-  
-    ​				| -- clipart126_test.txt
-  
-    ​				......
-  
-    ​		|-- office-home
-  
-    ​				|-- Art
-  
-    ​				|-- Clipart
-  
-    ​				|-- Product
-  
-    ​				|-- Real_World
-  
-  
-  
+
+
   You can download the .txt file for DomainNet in ./dataset/DomainNet, generate .txt file for office-home following [SHOT](https://github.com/tim-learn/SHOT)
-  
-  ​	
-  
+
+​	
+
 - **Models**
   
   - For adapting to ImageNet variations, ResNet-50 models available in [Torchvision](https://pytorch.org/vision/0.14/models.html) can be used and ViT available in [timm · PyPI](https://pypi.org/project/timm/#models).
@@ -112,8 +127,60 @@ and then
 bash SFDA-eva.sh
 ```
 
+The entry file for other algorithms is **test-time-eva.sh**
 
-### Acknowledgements
+ To evaluate this methods, modify the DATASET and METHOD in test-time-eva.sh
+
+and then
+
+```shell
+bash test-time-eva.sh
+```
+
+## Add your own algorithm, dataset and model
+
+We decouple the loading of datasets, models, and methods. So you can add them to our benchmarks completely independently.
+
+### To add a algorithm
+
+1. You can add a python files  **Algorithm_XX.py** for your algorithm in ./src/methods/
+
+2. Add the setup process function of your algorithm **setup_XX(model, cfg)** in function ./src/methods/setup.py.
+
+3. Add two line of your setup code in line 22 on ./test-time.py like
+
+   ~~~python
+       elif cfg.MODEL.ADAPTATION == "XX":
+           model, param_names = setup_XX(base_model, cfg)
+   ~~~
+
+### To add a dataset
+
+1. Write a function **load_dataset_name()** to load your dataset **Dataset_new** in ./src/data/data.py
+
+2. Define the transforms used to load your dataset on function **get_transform()** in ./src/data/data.py
+
+3. Add two line to load your dataset in function **load_dataset()** in ./src/data/data.py like
+
+   ```python
+       elif dataset == 'dataset_name':
+           return load_dataset_name(root=root, batch_size=batch_size, workers=workers, split=split, transforms=transforms,
+                                ckpt=ckpt)
+   ```
+
+### To add a model 
+
+1. Just add the code for loading your model in **load_model()** function in ./src/model/load_model.py like
+
+   ```python
+       elif model_name == 'model_new':
+           model =# the code for loading your model
+   ```
+
+   
+
+## Acknowledgements
+
 + Robustbench [official](https://github.com/RobustBench/robustbench)
 + CoTTA [official](https://github.com/qinenergy/cotta)
 + TENT [official](https://github.com/DequanWang/tent)
