@@ -176,7 +176,15 @@ We decouple the loading of datasets, models, and methods. So you can add them to
            model =# the code for loading your model
    ```
 
-   
+## You can cite our work by
+```
+@article{yu2023benchmarking,
+  title={Benchmarking test-time adaptation against distribution shifts in image classification},
+  author={Yu, Yongcan and Sheng, Lijun and He, Ran and Liang, Jian},
+  journal={arXiv preprint arXiv:2307.03133},
+  year={2023}
+}
+```
 
 ## Acknowledgements
 
